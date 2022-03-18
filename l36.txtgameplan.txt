@@ -1,0 +1,9 @@
+treasure rooms
+- armor
+- weapons
+
+rooms - 4
+
+		-Boss Room-
+  -armor room- -choice room- -weapon room-
+		

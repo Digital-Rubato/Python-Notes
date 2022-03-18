@@ -1,0 +1,418 @@
+Keyword 	Description					Example
+
+and		Logical and.					T n F - F, TnT - T, FnF - F
+
+-as		Part of the with-as statement.			with X as Y: pass
+
+Like an alias. If you are importing a library or a module into a program, but want to use different name for some reason (too long, confuses witha userful variable, is weird), then as can be used to provide a different name to it.
+
+ex: 
+
+import numpy
+numpy.max([1,2,3])
+3
+import numpy as np
+np.max([1,2,3])
+3
+from itertools import combinations as comb
+comb([1,2,3], 2)
+[(1,2), (2,3), (1,3)]
+
+In bigger scope, it is also used in context managers, a common example of which is the "with" statement. From what i understand, "as" is used to reassign the return obj to a new identifier when the "with" statement enters the context(enter and exit methods are defined on classes by "__enter__ and __exit__).
+
+#file handler is assigned to f
+#what is assigned to f is determined by the return
+#value of open()
+with open('file.txt', 'r') as f:
+	pass
+#this can be done too, given X is a 
+#context-manager
+with X as Y: pass
+
+FULL EXAMPLE
+
+from contextlib import contextmanager
+
+@contextmanager
+def X():
+	yeield 'Hello World'
+
+with X() as Y:
+	print(Y)
+
+#Hello World
+
+-assert		Assert (ensure) that something is true.		assert False, "Error!"
+
+The assert statement is used to continue the execute if the given condition evaluates to True. If the assert condition evals. to False, then it raises the AssertionError exception with the specfied error  message. 
+
+assert condition [, Error Message]
+
+example:
+
+x = 0
+assert x > 0, 'Only positive numbers are allowed'
+print('x is a positiver number.')
+
+output:
+
+Traceback (most recent call last):
+	assert x > 0, 'Only positiver numbers are allowed'
+AssertionError: Only positive numbers are allowed
+
+
+break		Stop this loop right now.			while True: break
+
+-class		Define a class.					class Person(object)
+
+Classes provide a means of bundling data and functionality together. Creating a new class creates a new type of object, allowing new instances of that type to be made. Each class instance can have attributes attached to it for maintaining its state. Class instances can also have methods (defined by its class) for modifying its state.
+
+class def. syntax:
+
+class ClassName:
+	<statement-1>
+	.
+	.
+	.
+	<statement-N>
+
+Class def., like function defs. (def statements) must be executed before they have any effect. (You could conceivably place a class definition in a branch of an if statement, or inside a function).
+
+In practice, the statements inside a class def will usually be function definitions, but other statements are allowed, and sometimes useful.
+
+Class ofjects support two kinds of operations: attribute references and instantiation
+
+#example class
+class MyClass:
+
+i = 12345
+
+def f(self):
+	return 'hello world'
+
+MyClass.i and MyClass.f are valid attribute references, returning an integer and a function object, respectively
+
+Class instantiation uses function notation. Just pretend that the class object is a parameterless function that returns a new instance of the class. For ex. 
+
+x = MyClass()
+
+This creates a new instance of the class and assigns this object to local variable x
+
+Classes also contain the __init__(), function which is always executed when the class is being initiated.
+
+Use the __init__() function to assign values to object properties, or other operations that are necessary to do when the object is being created:
+
+EX.
+
+class Person:
+	def __init__(self, name, age):
+		self..name = name
+		self.age = age
+
+p1 = Person("John, 36)
+
+print(p1.name)
+print(p1.age)
+
+Object Methods
+
+Objects can also contain methods. Methods in objects are functions that belong to the object.
+
+EX:
+
+class Person:
+	def __init__(self, name, age):
+		self.name = name
+		self.age = age
+
+	def myfunc(self):
+		print("Hello my name is " + self.name)
+
+p1 = Person("John", 36)
+p1.myfunc()
+
+continue	Don't process more of the loop, do it again	while True: continue
+
+def		define a function				def X(): pass
+
+del		delete from dictionary				del X[Y]
+
+elif		Else if condition				if: X; elif: Y; else: J
+
+else		Else condition					if: X; elif: Y; else: J
+
+-except		If an exception happens, do this.		except ValueError, e: print(e)
+
+The except block handles the error
+
+When an error occurs, or exception as we call it, Python will normally stop and generate an error message.
+
+These exceptions can be handled using the try statement.
+
+used with the "try" block:
+
+try:
+	print(x)
+except:
+	print("an exception occurred")
+
+Without the try block, the program will crash and raise an error.
+
+
+
+-exec		Run a string as Python.				exec 'print("Hello")'
+
+The exec() method executes the dynamically created program, which is either a string or a code object.
+
+If it is a string, the string is parsed as a suite of Python statements which is then executed unless a syntax error occurs and if it is an object code, it is simply executed. 
+
+We must be careful that the return statments may not be used outside of function definitions not even within the context of code passed to the exec() function. It doesn't return any value, hence returns None.
+
+Syntax:
+
+exec(object, globals, locals)
+
+Parameters:
+
+object - Either a string or a code object
+
+globals (optional) - a dictionary
+
+locals(optional) - a mapping object. Dictionary is the standard and commonly used mapping type in Python
+
+Return Values:
+
+exec() doesn't return any value, it returns 'None'
+
+
+
+-finally	exceptions or not, finally do this no matter	finally: pass
+		what.						
+
+for 		Loop over a collection of things.		for X in Y: pass
+
+from		Import specific parts of a module		from x import Y
+
+global		Declare that you want a global variable.	global X
+
+if		if condition					if: X; elif: Y; else: J
+
+import		import a module into this one to use. 		import os
+
+-in		Part of for-loops. Also a test of X in Y.	for X in Y: pass also 1 in [1] == True
+
+-is		Line == to test equality.			1 is 1 == True
+
+-lambda		Create a short anonymous function.		s = lambda y: y ** y; s(3)
+
+not		Logical not. 					not True == False
+
+or		Logical or.					True or False == True
+
+-pass		This block is empty. 				def empty(): pass
+
+print		Print this string.				print('this string')
+
+-raise		Raise an exception when things go wrong		raise ValueError("No")
+
+return		Exit the function with a return value.		def X(): return Y
+
+try		Try this block, and if exception, go to except	try: pass
+
+while		while loop.					while X: pass
+
+-with		With an expression as a variable do.		with X as Y: pass
+
+"with" Statement - The "with" statement is used to wrap the execution of a block with methods defined by a context manager (statement context managers). This allows common "try"\u2026"except"\u2026"finally" usage patterns to be encapsulated for convenient reuse.
+	
+	with_stmt ::= "with" with_item (","with_item)* ":" suite
+	with_item ::= expression ["as" target]
+
+-yield		Pause here and return to caller			def X(): yield Y; X().next()
+
+DATA TYPES
+
+can use "def is_square(i: int) -> bool:" to convert int to bool
+
+Type		Description					Example
+
+True		True Bool value.				ToF==T, FoF==T, ToT==T
+
+False		False Bool value				FnT==F, FnF==F, TnT==T
+
+None		Represents "nothing" or "no value."		x = None
+
+bytes		Stores bytes, maybe of txt, PNG, file, etc.	x = b"hello"
+
+strings		Stores textual info				x = "hello"
+
+numbers		Stores Integers					i = 100
+
+floats 		Stores decimals					i = 10.389
+
+lists		Stores a list of things.			j = [1,2,3,4]
+
+dicts		stores a key=value mapping of things		e = {'x':1, 'y': 2}
+
+STRING ESCAPE SEQUENCES
+
+Escape			Description
+
+\\			Backslash
+
+\' 			Single-quote
+
+\"			Double-quote
+
+\a			Bell
+
+\b			Backspace
+
+\f			Formfeed
+
+\n			Newline
+
+\r			Carriage
+
+\t			Tab
+
+\v			Vertical Tab
+
+OLD STYLE STRING FORMATS
+
+Escape		Description					Example
+
+%d		Decimal integers (not floating point)		"%d" % 45 == '45'
+
+%i		Same as %d					"%i" % 45 == '45'
+
+%o		Octal number					"%o" % 1000 == '1750'
+
+%u 		Unsigned Decimal				"%u" % -1000 == '-1000'
+
+%x		Hexadecimal lowercase				"%x" % 1000 == '3e8'
+
+%X		Hexadecimal uppercase				"%X" % 1000 == '3E8'
+
+%e		exponential notation, lowercase "e"		"%e" % 1000 == '1.000000e+03'
+
+%E		Exponential notation, uppercase "E"		"%E" % 1000 == '1.000000E+03'
+
+%f		Floating point real number			"%f" % 10.34 == '10.340000'
+
+%F		Same as %f					"%F" % 10.34 == '10.340000'
+
+%g		Either %f or %e, whichever is shorter		"%g" % 10.34 == '10.34'
+
+%G		Same as %g, but uppercase			"%G" % 10.34 == '10.34'
+
+%c		Character format				"%c" % 34 == '"'
+
+%r		Repr format(debugging format)			"%t" % int == "<type 'int'>"
+
+%s		String format					"%s there" % 'hi' == 'hi there'
+
+%%		A percent sign					"%g%%" % 10.34	== '10.34%'
+
+OPERATORS
+
+Operator	Description					Example
+
++		Addition					2 + 4 == 6
+
+-		Subtraction					2 - 4 == -2
+
+*		Multiplcation					2 * 4 == 8
+
+**		Power of 					2 ** 4 == 16
+
+/		Division					2 / 4 == 0.5
+
+//		Floor Division					2 // 4 == 0
+
+%		String interpolate or modulus			2 % 4 == 2
+
+<		Less than					4 < 4 == False
+
+>		Greater than					4 > 4 == False
+
+<= 		Less than equal					4 <= 4 == True
+
+>=		Greater than equal				4 >= 4 == True
+
+==		Equal						4 == 5 == False
+
+!=		Not equal					4 != 5 == True
+
+()		Parentheses					len('hi') == 2
+
+[]		List Brackets					[1,3,4]
+
+{}		Dict curly braces				{'x': 5, 'y': 10}
+
+@ 		At(decorators)					@classmethod
+
+,		Comma						range(0,10)
+
+:		colon						def X():
+
+.		Dot						self.x = 10
+
+= 		Assign Equal					x = 10
+
+;		Semi-colon					print("hi"); print("there")
+
++=		Add and assign					x = 1; x += 2
+
+-=		Subtract and assign				x = 1; x -= 2
+
+*= 		Multiply and assign				x = 1; x *= 2
+
+/= 		Divide and assign				x = 1; x /= 2
+
+//=		floor divide and assign				x = 1; x //= 2
+
+%=		Modulus assign					x = 1; x %= 2
+
+**= 		Power Assign					x = 1; x **= 2
+
+List (array) Comprehension - just for "for-loops" over a collection expressed in a more terse and compact syntax 
+	ex of L.C. : { (values) = [(expression) for (value) in (collection)] }
+
+	ex of an equivalent for-loop: 
+		(value) = []
+		for (value) in (collection):
+			(values).append( (expression) )
+
+Generator Expressions - quickly created. Useful in the same cases where list comprehensions are used, with an added benefit: you can create them without building and holding the entire object in memory before iteration. In other words, you'll have no memory penalty when you use generator expressions.
+
+	ex: nums_squared_lc = [num**2 for num in range(5)]
+	    nums_squared_gc = (num**2 for num in range(5))
+
+	difference b/w the two are one uses parentheses and the other uses brackets
+
+	output: nums_squared_lc: [0,1,4,9,16]
+		nums_squared_gc: <generator object <genexpr> at 0x107fbbc78>
+	
+	Brackets are used to build the list. 
+
+	Parentheses create the generator object and that it is distinct from the list
+
+	To prove that GE's dont use that much memory:
+		Make use of the sys.getsizeof() function >
+		
+			import sys
+			nums_squared_lc = [i * 2 for i in range(10000)]
+			sys.getsizeof(nums_squared_lc)
+			# 87624 bytes
+
+			nums_squared_gc = (i * 2 for i in range(10000))
+			print(sys.getsizeof(nums_squared_gc))
+			# 120 bytes
+	
+	
+
+
+
+	
+		

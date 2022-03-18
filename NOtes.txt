@@ -1,0 +1,7 @@
+#when typing in powershell, to initialize python as a solo entity, type python3.9 .
+
+#with this you will be able to type direct python commands into the shell and have it perform the lines of code input. 
+
+#keep in mind that some lines of code require the ("") double quote syntax. With this syntax it is able to read the input and perform the necessary action
+
+# with this in mind, please, please, please, please remember that some syntax will erase files. l15.txt was a casualty of this and has erased all of the notes associated with it.o

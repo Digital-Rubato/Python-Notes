@@ -1,0 +1,7 @@
+to set location in power shell
+
+type:
+
+set-location -Path FILE PATH HERE
+
+this will set it to the folder
